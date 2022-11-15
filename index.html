@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head></head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Questrial">
+ <style>
+  * {
+   box-sizing: border-box;
+  }
+  h1 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font-size: 15px; font-style: italic; font-variant: normal; font-weight: 700; line-height: 34.5px; } 
+  h3 { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } 
+  p { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
+  blockquote { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+
+  body {
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 10px;
+   background: linear-gradient(135deg, #a4c2fc, #04AA6D);
+  }
+
+  input[type=text],
+  select,
+  textarea {
+   font: bold 16px "Questrial", monospace;
+   width: 75%;
+   padding: 8px;
+   margin: 5px 0 5px 0;
+   border: 1px solid #ccc;
+   border-bottom-width: 2px;
+   transition: all 0.3s ease;
+   border-radius: 8px;
+   resize: vertical;
+  }
+
+  input[type=text-gps] {
+   font: bold 16px "Questrial", monospace;
+   width: 50%;
+   padding: 8px;
+   margin: 5px 0 5px 0;
+   border: 1px solid #ccc;
+   border-bottom-width: 2px;
+   transition: all 0.3s ease;
+   border-radius: 8px 0 0 8px;
+   resize: vertical;
+  }
+
+  input[type=file] {
+   font: bold 16px "Questrial", monospace;
+   width: 75%;
+   margin-top: 8px;
+   border: 1px solid #ccc;
+   border-bottom-width: 2px;
+   transition: all 0.3s ease;
+   border-radius: 8px;
+   content: "Select some files";
+  }
+
+  input[type=text]:focus {
+
+  }
+
+  input::file-selector-button {
+   background: linear-gradient(135deg, #f58802, #04AA6D);
+   font: bold 16px "Questrial", monospace;
+   color: #fff;
+   border: none;
+   padding: 8px 16px;
+   border-radius: 8px 0 0 8px;
+   float: none;
+   text-align: center;
+  }
+
+  input::file-selector-button:hover {
+   background: linear-gradient(135deg, #04AA6D, #a4c2fc);
+  }
+
+  label {
+   display: inline-block;
+   width: 20%;
+   font: bold 16px "Questrial", monospace;
+   text-align: right;
+   color: #003D14;
+   padding: 5px 0 5px 0;
+   display: inline-block;
+  }
+
+  .alert.success {
+   background-color: #04AA6D;
+  }
+
+  em {
+   color: #f45702;
+   font-weight: bold;
+  }
+
+  input[type=submit] {
+   font: bold 16px "Questrial", monospace;
+   background: linear-gradient(135deg, #a4c2fc, #04AA6D);
+   color: #FFF;
+   padding: 8px;
+   margin: 10px 4% 10px 4%;
+   width: 92%;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   float: center;
+   font-weight: bold;
+  }
+
+  input[type=submit]:hover {
+   background: linear-gradient(135deg, #04AA6D, #a4c2fc);
+  }
+
+  input[type=reset] {
+   font: bold 16px "Questrial", monospace;
+   background: linear-gradient(135deg, #a4c2fc, #04AA6D);
+   color: #FFF;
+   padding: 14px 5px 14px 5px;
+   float: left;
+   width: 35%;
+   margin:10px 0 20px 4%;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   cursor: pointer;
+  }
+
+  input[type=reset]:hover {
+   background: linear-gradient(135deg, #04AA6D, #a4c2fc);
+  }
+
+  input[type=button] {
+   font: bold 16px "Questrial", monospace;
+   background-color: #04AA6D;
+   color: #FFF;
+   padding: 9px 0 10px 0;
+   border: none;
+   border-radius: 0 8px 8px 0;
+   cursor: pointer;
+   float: center;
+  }
+
+  .button-gps {
+   text-align: center;
+   color: #FFF;
+   width: 24.3%;
+   margin-left:-5px;
+  
+  }
+
+
+  input[type=button]:hover {
+   background-color: #04CC6D;
+  }
+
+
+
+  a:link,
+  a:visited {
+   font: bold 16px "Questrial", monospace;
+   text-align: center;
+   background-color: #f44336;
+   color: #FFF;
+   padding: 14px 0 14px 0;
+   margin:10px 4.5% 0 0;
+   width: 35%;
+   cursor: pointer;
+   border-radius: 8px;
+   cursor: pointer;
+   float: right;
+   text-decoration: none;
+  }
+
+  a:hover,
+  a:active {
+   background-color: #db2518;
+  }
+
+  .container {
+   max-width: 700px;
+   width: 100%;
+   background-color: #fff;
+   border-radius: 5px;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .title {
+   font: bold 30px/30px Questrial, monospace;
+   font-weight: 700;
+   line-height: 48px;
+   margin: -10px 0 10px 0;
+   position: relative;
+  }
+
+  .container .title::before {
+   content: "";
+   position: absolute;
+   left: 10%;
+   bottom: 0;
+   height: 3px;
+   width: 85%;
+   border-radius: 5px;
+   background: linear-gradient(135deg, #04AA6D, #FFF);
+  }
+
+  .col-25 {
+   float: center;
+   width: 100%;
+  }
+
+  .col-toado {
+   float: center;
+   width: 300px;
+  }
+
+  .col-75 {
+   float: left;
+   width: 100%;
+  }
+
+  .drop-container {
+   position: relative;
+   display: flex;
+   float: left;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 92%;
+   padding: 8px;
+   margin: 10px 4% 10px 4%;
+   border-radius: 8px;
+   border: 2px dashed #555;
+   color: #444;
+   cursor: pointer;
+   transition: background .2s ease-in-out, border .2s ease-in-out;
+  }
+
+  .drop-container:hover {
+   background: #eee;
+   border-color: #111;
+  }
+
+  .drop-container:hover .drop-title {
+   color: #222;
+  }
+
+  .drop-title {
+   color: #444;
+   font-size: 16px;
+   font-weight: bold;
+   text-align: center;
+   transition: color .2s ease-in-out;
+  }
+
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {}
+  }
+ </style>
+ <body>
+  <div class="container">
+   <p></p>
+   <p></p>
+   <div class="title" style="text-align: center;">TUY HOÀ 2 - MCP</div>
+   <div class="content">
+    <div class="user-details">
+     <!--Cách 1: HIỂN THỊ THÔNG BÁO DẠNG POUPUP -->
+     <script type="text/javascript">
+      var submitted = false;
+     </script>
+     <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Thông tin đã được cập nhật!');}" style="display: none;"></iframe>
+     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbz7Xcc9zCXhsoXMiCy4sSr-Ot3reI8DKdOTp50FjivkbEpDe7PneCOD5fOLYZpx40pEIg/exec" method="POST">
+      <input type="hidden" value="" name="fileContent" id="fileContent">
+      <input type="hidden" value="" name="filename" id="filename">
+      <div class="user-details">
+       <div class="col-25">
+        <label for="DSR">DSR: <em>&#x2a;</em>
+        </label>
+        <select id="DSR" name="DSR" required="">
+         <option value="">Chọn DSR</option>
+         <option value="VS011 - Công Định"> VS011 - Công Định </option>
+         <option value="VS012 - Minh Trọng"> VS012 - Minh Trọng </option>
+         <option value="VS013 - Phạm Định"> VS013 - Phạm Định </option>
+         <option value="VS014 - Thu Hằng"> VS014 - Thu Hằng </option>
+         <option value="VS015 - Đức Tiên"> VS015 - Đức Tiên </option>
+        </select>
+       </div>
+       <div class="row">
+        <div class="col-25">
+         <label for="fname">Mã KH:</label>
+         <input type="text" id="ma_kh" name="ma_kh" required="" pattern="(?=.*\d)(?=.*[A-Z]).{6,}" title="Mã khách hàng phải có ký tự đầu viết hoa và đủ 6 ký tự" placeholder="Mã KH đủ 6 ký tự" autocomplete="off">
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-25">
+         <label for="lname">GPS:</label>
+         <script type="text/javascript">
+          function getLocationConstant() {
+           if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+           } else {
+            alert("Your browser or device doesn't support Geolocation");
+           }
+          }
+          // Cập nhật vị trí thành công
+          function onGeoSuccess(event) {
+           document.getElementById("Toado").value = event.coords.latitude + ", " + event.coords.longitude;
+          }
+          // Nếu xảy ra lỗi
+          function onGeoError(event) {
+           alert("Error code " + event.code + ". " + event.message);
+          }
+         </script>
+         <cfform action="gps2.cfm" method="post">
+          <input type="text-gps" id="Toado" name="Toado" value="" placeholder="Nhấp Lấp GPS" readonly>
+          <input class="button-gps" type="button" value="Lấy GPS" onclick="getLocationConstant()" />
+        </div>
+<script type= "text/javascript">
+var quan_huyen_arr = new Array("Thành phố Tuy Hoà", "Thị xã Đông Hòa", "Thị xã Sông Cầu", "Huyện Đồng Xuân", "Huyện Tuy An", "Huyện Sơn Hoà", "Huyện Sông Hinh", "Huyện Tây Hoà", "Huyện Phú Hoà");
+var s_a = new Array();
+s_a[0]="";
+s_a[1]="Phường 1|Phường 2|Phường 3|Phường 4|Phường 5|Phường 6|Phường 7|Phường 8|Phường 9|Phường Phú Đông|Phường Phú Lâm|Phường Phú Thạnh|Xã An Phú|Xã Bình Kiến|Xã Bình Ngọc|Xã Hòa Kiến";
+s_a[2]="Phường Hòa Hiệp Bắc|Phường Hòa Hiệp Nam|Phường Hoà Hiệp Trung|Phường Hoà Vinh|Phường Hòa Xuân Tây|Xã Hòa Tâm|Xã Hòa Tân Đông|Xã Hòa Thành|Xã Hòa Xuân Đông|Xã Hòa Xuân Nam";
+s_a[3]="Phường Xuân Đài|Phường Xuân Phú|Phường Xuân Thành|Phường Xuân Yên|Xã Xuân Bình|Xã Xuân Cảnh|Xã Xuân Hải|Xã Xuân Lâm|Xã Xuân Lộc|Xã Xuân Phương|Xã Xuân Thịnh|Xã Xuân Thọ 1|Xã Xuân Thọ 2";
+s_a[4]="Thị trấn La Hai|Xã Đa Lộc|Xã Phú Mỡ|Xã Xuân Lãnh|Xã Xuân Long|Xã Xuân Phước|Xã Xuân Quang 1|Xã Xuân Quang 2|Xã Xuân Quang 3|Xã Xuân Sơn Bắc|Xã Xuân Sơn Nam";
+s_a[5]="Thị trấn Chí Thạnh|Xã An Dân|Xã An Ninh Tây|Xã An Ninh Đông|Xã An Thạch|Xã An Hòa Hải|Xã An Định|Xã An Cư|Xã An Lĩnh|Xã An Nghiệp|Xã An Xuân|Xã An Hiệp|Xã An Mỹ|Xã An Thọ|Xã An Chấn";
+s_a[6]="Thị trấn Củng Sơn|Xã Cà Lúi|Xã Eachà Rang|Xã Krông Pa|Xã Phước Tân|Xã Sơn Định|Xã Sơn Hà|Xã Sơn Hội|Xã Sơn Long|Xã Sơn Nguyên|Xã Sơn Phước|Xã Sơn Xuân|Xã Suối Bạc|Xã Suối Trai";
+s_a[7]="Thị trấn Hai Riêng|Xã Đức Bình Đông|Xã Đức Bình Tây|Xã Ea Bá|Xã Ea Lâm|Xã EaBar|Xã EaBia|Xã Ealy|Xã EaTrol|Xã Sông Hinh|Xã Sơn Giang";
+s_a[8]="Thị trấn Phú Thứ|Xã Hòa Bình 1|Xã Hòa Đồng|Xã Hòa Mỹ Đông|Xã Hòa Mỹ Tây|Xã Hòa Phong|Xã Hòa Phú|Xã Hòa Tân Tây|Xã Hòa Thịnh|Xã Sơn Thành Đông|Xã Sơn Thành Tây";
+s_a[9]="Thị Trấn Phú Hoà|Xã Hòa An|Xã Hòa Định Đông|Xã Hòa Định Tây|Xã Hòa Hội|Xã Hòa Quang Bắc|Xã Hòa Quang Nam|Xã Hòa Thắng|Xã Hòa Trị";
+var s_b = new Array();
+s_b[1,1]="c11|c12|c13|c14|c15|c16|c17|c18|c19|c10";
+s_b[1,2]="c21|c22|c23|c24|c25|c26|c27|c28|c29|c210";
+s_b[2,1]="d11|d12|d13|d14|d15|d16|d17|d18|d19|d10";
+s_b[2,2]="d21|d22|d23|d24|d25|d26|d27|d28|d29|d210";
+function print_quan_huyen(quan_huyen_id){
+    // given the id of the <select> tag as function argument, it inserts <option> tags
+    var option_str = document.getElementById(quan_huyen_id);
+    option_str.length=0;
+    option_str.options[0] = new Option('Nhấp chọn Huyện','');
+    option_str.selectedIndex = 0;
+    for (var i=0; i<quan_huyen_arr.length; i++) {
+        option_str.options[option_str.length] = new Option(quan_huyen_arr[i],quan_huyen_arr[i]);
+    }
+}
+
+function print_xa_phuong(xa_phuong_id, xa_phuong_index){
+    var option_str = document.getElementById(xa_phuong_id);
+    option_str.length=0;
+    option_str.options[0] = new Option('Nhấp chọn Xã','');
+    option_str.selectedIndex = 0;
+    var xa_phuong_arr = s_a[xa_phuong_index].split("|");
+    for (var i=0; i<xa_phuong_arr.length; i++) {
+        option_str.options[option_str.length] = new Option(xa_phuong_arr[i],xa_phuong_arr[i]);
+    }
+}
+</script>
+
+        </head>
+        <body>
+         <form>
+          <div class="col-75">
+           <label for="quan_huyen">Huyện:</label>
+           <select onchange="print_xa_phuong('xa_phuong',this.selectedIndex);" id="quan_huyen" name="quan_huyen" required=""></select>
+           <div class="col-75">
+            <label for="quan_huyen">Xã:</label>
+            <select name="xa_phuong" id="xa_phuong" required=""></select>
+           </div>
+           <script language="javascript">
+            print_quan_huyen("quan_huyen");
+           </script>
+           <div class="row">
+            <div class="col-25">
+             <label for="fname">Địa chỉ:</label>
+             <input type="text" id="dia_chi" name="dia_chi" required="" placeholder="Nhập địa chỉ" autocomplete="off">
+            
+            
+           <label for="attach" class="drop-container">
+  <span class="drop-title">Thả tệp vào đây</span>
+  hoặc
+  <input type="file" id="attach" accept="" name="attach" required>
+</label>
+          
+         </form>
+         <div class="button" style="width: 100%;">
+          <input type="submit" value="GỬI DỮ LIỆU" onclick="UploadFile();" />
+         </div>
+         <div>
+          <a href="https://docs.google.com/spreadsheets/d/190EYC31e6-IBXC_iemm8lWhkLLHS_5cso-FlNdoYdb0/edit#gid=0" class="w3-button w3-black" target="_blank">Xem dữ liệu</a>
+          <input type="reset" value="Xoá dữ liệu">
+         </div>
+         <script>
+          function UploadFile() {
+           var reader = new FileReader();
+           var file = document.getElementById('attach').files[0];
+           reader.onload = function() {
+            document.getElementById('fileContent').value = reader.result;
+            document.getElementById('filename').value = file.name;
+            document.getElementById('uploadForm').submit();
+           }
+           reader.readAsDataURL(file);
+          }
+         </script>
+         <script type="text/javascript">
+          function getLocationConstant() {
+           if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+           } else {
+            alert("Your browser or device doesn't support Geolocation");
+           }
+          }
+          // Cập nhật vị trí thành công
+          function onGeoSuccess(event) {
+           document.getElementById("Toado").value = event.coords.latitude + ", " + event.coords.longitude;
+          }
+          // Nếu xảy ra lỗi
+          function onGeoError(event) {
+           alert("Error code " + event.code + ". " + event.message);
+          }
+         </script>
+        </body>
+</html>
