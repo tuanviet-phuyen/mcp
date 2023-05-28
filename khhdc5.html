@@ -271,7 +271,7 @@
       var submitted = false;
      </script>
      <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Thông tin đã được cập nhật!');}" style="display: none;"></iframe>
-     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxNyQGwUZBLIA2NgdPyHWCSwUuXKnpycmU9PmbD2hfKwCpMWeN2-dObSKeqZ8moqmb-bQ/exec" method="POST">
+     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxD42ZMKKx9J_EM86zWUzKQCKsqsmEJW5Vgy44euovJHtv2XdrygZ0ylHTMuht93f_9hA/exec" method="POST">
       <input type="hidden" value="" name="fileContent" id="fileContent">
       <input type="hidden" value="" name="filename" id="filename">
       <div class="user-details">
@@ -330,10 +330,12 @@ function print_DSR(DSR_id, DSR_index){
 
 <body>
 <form>
-		<div class="row">
-        <div class="col-25">
-         <label for="lname">GPS:</label>
-         <script type="text/javascript">
+		   <div class="col-25">
+    <label for="lname">GPS:<em>&#x2a;</em></label>
+    <input class="input" type="text-gps" readonly id="GPS" name="GPS" value="" placeholder="Nhấp Lấp GPS" required="required">
+    <input class="button-gps" type="button" value="Lấy GPS" onclick="getLocationConstant()" />
+        
+        <script type="text/javascript">
           function getLocationConstant() {
            if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
@@ -351,9 +353,7 @@ function print_DSR(DSR_id, DSR_index){
           }
          </script>
          <cfform action="gps2.cfm" method="post">
-          <input type="text-gps" id="GPS" name="GPS" value="" placeholder="Nhấp Lấp GPS" readonly>
-          <input class="button-gps" type="button" value="Lấy GPS" onclick="getLocationConstant()" />
-        </div>
+    </div>
 			<div class="col-75">
            <label for="Branch">Chi nhánh:</label>
 		   <select onchange="print_Site('Site',this.selectedIndex);" id="Branch" name ="Branch" ></select>
