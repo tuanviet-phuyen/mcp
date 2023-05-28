@@ -37,7 +37,7 @@
 
   input[type=text-gps] {
    font: bold 16px "Questrial", monospace;
-   width: 50%;
+   width: 24.8%;
    padding: 8px;
    margin: 5px 0 5px 0;
    border: 1px solid #ccc;
@@ -143,7 +143,7 @@
   .button-gps {
    text-align: center;
    color: #FFF;
-   width: 25.2%;
+   width: 50.2%;
    border: 1px solid #04AA6D;
    border-bottom-width: 2px;
    transition: all 0.3s ease;
@@ -271,7 +271,7 @@
       var submitted = false;
      </script>
      <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Thông tin đã được cập nhật!');}" style="display: none;"></iframe>
-     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbw00wGMhuZaXpXDbc5NWljBD4LoGF7CGM8aeO7ny0jYP2xaszj5Ckqr3FAjfDpdUGo-kA/exec" method="POST">
+     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxNyQGwUZBLIA2NgdPyHWCSwUuXKnpycmU9PmbD2hfKwCpMWeN2-dObSKeqZ8moqmb-bQ/exec" method="POST">
       <input type="hidden" value="" name="fileContent" id="fileContent">
       <input type="hidden" value="" name="filename" id="filename">
       <div class="user-details">
@@ -330,6 +330,30 @@ function print_DSR(DSR_id, DSR_index){
 
 <body>
 <form>
+		<div class="row">
+        <div class="col-25">
+         <label for="lname">GPS:</label>
+         <script type="text/javascript">
+          function getLocationConstant() {
+           if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+           } else {
+            alert("Your browser or device doesn't support Geolocation");
+           }
+          }
+          // Cập nhật vị trí thành công
+          function onGeoSuccess(event) {
+           document.getElementById("Toado").value = event.coords.latitude + ", " + event.coords.longitude;
+          }
+          // Nếu xảy ra lỗi
+          function onGeoError(event) {
+           alert("Error code " + event.code + ". " + event.message);
+          }
+         </script>
+         <cfform action="gps2.cfm" method="post">
+          <input type="text-gps" id="Toado" name="Toado" value="" placeholder="Toạ độ" readonly>
+          <input class="button-gps" type="button" value="Nhấp vào đây lấy Toạ độ" onclick="getLocationConstant()" />
+        </div>
 			<div class="col-75">
            <label for="Branch">Chi nhánh:</label>
 		   <select onchange="print_Site('Site',this.selectedIndex);" id="Branch" name ="Branch" ></select>
@@ -349,30 +373,7 @@ function print_DSR(DSR_id, DSR_index){
          <input type="text" id="Cus_CODE" name="Cus_CODE" required="" pattern="(?=.*\d)(?=.*[A-Z]).{6,}" title="Mã khách hàng phải có ký tự đầu viết hoa và đủ 6 ký tự" placeholder="Mã KH đủ 6 ký tự" autocomplete="off">
         </div>
        </div>
-       <div class="row">
-        <div class="col-25">
-         <label for="lname">GPS:</label>
-         <script type="text/javascript">
-          function getLocationConstant() {
-           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-           } else {
-            alert("Your browser or device doesn't support Geolocation");
-           }
-          }
-          // Cập nhật vị trí thành công
-          function onGeoSuccess(event) {
-           document.getElementById("GPS").value = event.coords.latitude + ", " + event.coords.longitude;
-          }
-          // Nếu xảy ra lỗi
-          function onGeoError(event) {
-           alert("Error code " + event.code + ". " + event.message);
-          }
-         </script>
-         <cfform action="gps2.cfm" method="post">
-          <input type="text-gps" id="GPS" name="GPS" value="" placeholder="Nhấp Lấp GPS" readonly>
-          <input class="button-gps" type="button" value="Lấy GPS" onclick="getLocationConstant()" />
-        </div>
+       
 
            <label for="attach" class="drop-container">
   <span class="drop-title">Thả tệp vào đây</span>
@@ -398,23 +399,6 @@ function print_DSR(DSR_id, DSR_index){
             document.getElementById('uploadForm').submit();
            }
            reader.readAsDataURL(file);
-          }
-         </script>
-         <script type="text/javascript">
-          function getLocationConstant() {
-           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-           } else {
-            alert("Your browser or device doesn't support Geolocation");
-           }
-          }
-          // Cập nhật vị trí thành công
-          function onGeoSuccess(event) {
-           document.getElementById("GPS").value = event.coords.latitude + ", " + event.coords.longitude;
-          }
-          // Nếu xảy ra lỗi
-          function onGeoError(event) {
-           alert("Error code " + event.code + ". " + event.message);
           }
          </script>
         </body>
