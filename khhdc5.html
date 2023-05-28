@@ -254,6 +254,42 @@
    text-align: center;
    transition: color .2s ease-in-out;
   }
+  .notification {
+      position: fixed;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #04AA6D;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 50px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .notification.show {
+      opacity: 1;
+    }
+
+    .notification .notification-content {
+      display: flex;
+      align-items: center;
+    }
+
+    .notification #message {
+      flex-grow: 1;
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .notification #close-btn {
+      border: none;
+      background: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+    }
 
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {}
@@ -272,7 +308,48 @@
      </script>
      <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Thông tin đã được cập nhật!');}" style="display: none;"></iframe>
      <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxD42ZMKKx9J_EM86zWUzKQCKsqsmEJW5Vgy44euovJHtv2XdrygZ0ylHTMuht93f_9hA/exec" method="POST">
-      <input type="hidden" value="" name="fileContent" id="fileContent">
+      <div id="notification" class="notification">
+    <div class="notification-content">
+      <span id="message"></span>
+      <button id="close-btn">&times;</button>
+    </div>
+  </div>
+  <script>
+    var notification = document.getElementById('notification');
+    var messageElement = document.getElementById('message');
+    var closeButton = document.getElementById('close-btn');
+    var timeout;
+
+    function showNotification(message) {
+      messageElement.textContent = message;
+      notification.classList.add('show');
+      timeout = setTimeout(closeNotification, 10000); // Tự động đóng sau 10 giây (10000 milliseconds)
+    }
+
+    function closeNotification() {
+      clearTimeout(timeout); // Xóa timeout để ngăn việc tự động đóng thông báo nếu người dùng đã đóng nó trước đó
+      notification.classList.remove('show');
+    }
+
+    // Example usage
+    var submitted = false;
+
+    function handleSubmit() {
+      submitted = true;
+      showNotification('Thông tin đã được cập nhật!');
+    }
+
+    closeButton.addEventListener('click', closeNotification);
+
+    // Kiểm tra khi iframe đã được tải xong
+    var iframe = document.getElementById('hidden_iframe');
+    iframe.onload = function() {
+      if (submitted) {
+        handleSubmit();
+      }
+    };
+  </script>
+	  <input type="hidden" value="" name="fileContent" id="fileContent">
       <input type="hidden" value="" name="filename" id="filename">
       <div class="user-details">
         <script type= "text/javascript">
