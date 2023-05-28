@@ -343,7 +343,7 @@ function print_DSR(DSR_id, DSR_index){
           }
           // Cập nhật vị trí thành công
           function onGeoSuccess(event) {
-           document.getElementById("Toado").value = event.coords.latitude + ", " + event.coords.longitude;
+           document.getElementById("GPS").value = event.coords.latitude + ", " + event.coords.longitude;
           }
           // Nếu xảy ra lỗi
           function onGeoError(event) {
@@ -351,7 +351,7 @@ function print_DSR(DSR_id, DSR_index){
           }
          </script>
          <cfform action="gps2.cfm" method="post">
-          <input type="text-gps" id="Toado" name="Toado" value="" placeholder="Nhấp Lấp GPS" readonly>
+          <input type="text-gps" id="GPS" name="GPS" value="" placeholder="Nhấp Lấp GPS" readonly>
           <input class="button-gps" type="button" value="Lấy GPS" onclick="getLocationConstant()" />
         </div>
 			<div class="col-75">
