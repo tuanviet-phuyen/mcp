@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
- <head></head>
+ <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Questrial">
  <style>
@@ -55,7 +55,7 @@
    border-bottom-width: 2px;
    transition: all 0.3s ease;
    border-radius: 8px;
-   content: "Select some files";
+   content: "Chọn ảnh";
   }
 
   input[type=text]:focus {
@@ -116,11 +116,11 @@
 
   input[type=reset] {
    font: bold 16px "Questrial", monospace;
-   background: linear-gradient(135deg, #a4c2fc, #04AA6D);
+   background: linear-gradient(135deg, #f58802, #04AA6D);
    color: #FFF;
    padding: 14px 5px 14px 5px;
    float: left;
-   width: 35%;
+   width: 50%;
    margin:10px 0 20px 4%;
    border: 1px solid #ccc;
    border-radius: 8px;
@@ -254,153 +254,254 @@
    text-align: center;
    transition: color .2s ease-in-out;
   }
+  .notification {
+  font: bold 20px "Questrial", monospace;
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  width: 55%;
+  height: 30%;
+  transform: translate(-50%, -50%);
+  background-color: #04AA6D;
+  padding: 40px; 
+  border: 3px solid #dddddd;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.notification-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.notification-message {
+  font-size: 16px;
+  color: #fff;
+}
+
+.notification-close {
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 50px;
+  cursor: pointer;
+}
+  
 
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {}
   }
  </style>
- <body>
-  <div class="container">
-   <p></p>
-   <p></p>
-   <div class="title" style="text-align: center;">C5 - CHINH PHỤC VINH QUANG</div>
-   <div class="content">
-    <div class="user-details">
-     <!--Cách 1: HIỂN THỊ THÔNG BÁO DẠNG POUPUP -->
-     <script type="text/javascript">
-      var submitted = false;
-     </script>
-     <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Thông tin đã được cập nhật!');}" style="display: none;"></iframe>
-     <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxD42ZMKKx9J_EM86zWUzKQCKsqsmEJW5Vgy44euovJHtv2XdrygZ0ylHTMuht93f_9hA/exec" method="POST">
-  </script>
-	  <input type="hidden" value="" name="fileContent" id="fileContent">
-      <input type="hidden" value="" name="filename" id="filename">
-      <div class="user-details">
-        <script type= "text/javascript">
-var Branch_arr = new Array("Khánh Hoà", "Phú Yên");
-var s_a = new Array();
-s_a[0]="";
-s_a[1]="Cam Ranh|Nha Trang 1|Nha Trang 2|Ninh Hoà";
-s_a[2]="Tuy Hoà 1|Tuy Hoà 2|Sông Cầu";
-
-var s_b = new Array();
-s_b[1,1]="VS001|VS002|VS003|VS004|VS005|VS006";
-s_b[1,2]="VS007|VS008|VS009|VS010|VS011";
-s_b[1,3]="VS012|VS013|VS014|VS015|VS016|VS017";
-s_b[1,4]="VS020|VS021|VS022|VS023|VS024";
-s_b[2,1]="VS005|VS006|VS007|VS008|VS009|VS010";
-s_b[2,2]="VS011|VS012|VS013|VS014|VS015";
-s_b[2,3]="VS001|VS002|VS003|VS004";
-
-function print_Branch(Branch_id){
-    // given the id of the <select> tag as function argument, it inserts <option> tags
-    var option_str = document.getElementById(Branch_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn Chi nhánh','');
-    option_str.selectedIndex = 0;
-    for (var i=0; i<Branch_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(Branch_arr[i],Branch_arr[i]);
-    }
-}
-
-function print_Site(Site_id, Site_index){
-    var option_str = document.getElementById(Site_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn Sun/Site','');
-    option_str.selectedIndex = 0;
-    var Site_arr = s_a[Site_index].split("|");
-    for (var i=0; i<Site_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(Site_arr[i],Site_arr[i]);
-    }
-}
-//This function is incorrect, just to demonstrate, please help to correct this
-
-function print_DSR(DSR_id, DSR_index){
-    var option_str = document.getElementById(DSR_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn mã DSR','');
-    option_str.selectedIndex = 0;
-    var DSR_arr = s_b[DSR_index].split("|");
-    for (var i=0; i<DSR_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(DSR_arr[i],DSR_arr[i]);
-    }
-}
-
-</script>
 </head>
-
-<body>
-<form>
-		   <div class="col-25">
-    <label for="lname">GPS:<em>&#x2a;</em></label>
-    <input class="input" type="text-gps" readonly id="GPS" name="GPS" value="" placeholder="Toạ độ" required="required">
-    <input class="button-gps" type="button" value="Nhấp vào đây lấy Toạ độ" onclick="getLocationConstant()" />
-        
+	<body>
+  <div class="container">
+    <p></p>
+    <p></p>
+    <div class="title" style="text-align: center;">C5 - CHINH PHỤC VINH QUANG</div>
+    <div class="content">
+      <div class="user-details">
         <script type="text/javascript">
-          function getLocationConstant() {
-           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-           } else {
-            alert("Your browser or device doesn't support Geolocation");
-           }
-          }
-          // Cập nhật vị trí thành công
-          function onGeoSuccess(event) {
-           document.getElementById("GPS").value = event.coords.latitude + ", " + event.coords.longitude;
-          }
-          // Nếu xảy ra lỗi
-          function onGeoError(event) {
-           alert("Error code " + event.code + ". " + event.message);
-          }
-         </script>
-         <cfform action="gps2.cfm" method="post">
-    </div>
-			<div class="col-75">
-           <label for="Branch">Chi nhánh:</label>
-		   <select onchange="print_Site('Site',this.selectedIndex);" id="Branch" name ="Branch" ></select>
-        <br />
-		<div class="col-75">
-           <label for="Site">Site:</label>
-        <select onchange="print_DSR('DSR',this.selectedIndex);" name ="Site" id ="Site"></select>
-        <br />
-		<div class="col-75">
-           <label for="DSR">DSR:</label>
-        <select name ="DSR" id ="DSR"></select>
-        <script language="javascript">print_Branch("Branch");</script>
-       </div>
-       <div class="row">
-        <div class="col-25">
-         <label for="fname">Mã KH:</label>
-         <input type="text" id="Cus_CODE" name="Cus_CODE" required="" pattern="(?=.*\d)(?=.*[A-Z]).{6,}" title="Mã khách hàng phải có ký tự đầu viết hoa và đủ 6 ký tự" placeholder="Mã KH đủ 6 ký tự" autocomplete="off">
-        </div>
-       </div>
-       
+          var submitted = false;
+        </script>
+        <iframe id="hidden_iframe" name="hidden_iframe" onload="iframeLoaded()" style="display: none;"></iframe>
+        <form onsubmit="submitted=true; return validateForm();" target="hidden_iframe" class="text-left" role="form" id="uploadForm" action="https://script.google.com/macros/s/AKfycbxD42ZMKKx9J_EM86zWUzKQCKsqsmEJW5Vgy44euovJHtv2XdrygZ0ylHTMuht93f_9hA/exec" method="POST">
+          <input type="hidden" value="" name="fileContent" id="fileContent">
+          <input type="hidden" value="" name="filename" id="filename">
+          <div class="user-details">
+            <script type="text/javascript">
+              var Branch_arr = new Array("Khánh Hoà", "Phú Yên");
+              var s_a = new Array();
+              s_a[0] = "";
+              s_a[1] = "Cam Ranh|Nha Trang 1|Nha Trang 2|Ninh Hoà";
+              s_a[2] = "Tuy Hoà 1|Tuy Hoà 2|Sông Cầu";
 
-           <label for="attach" class="drop-container">
-  <span class="drop-title">Thả tệp vào đây</span>
-  hoặc
-  <input type="file" id="attach" accept="image/*" capture="camera" name="attach" required>
-</label>
-          
-         </form>
-         <div class="button" style="width: 100%;">
-          <input type="submit" value="GỬI DỮ LIỆU" onclick="UploadFile();" />
-         </div>
-         <div>
-<!--          <a href="https://docs.google.com/spreadsheets/d/190EYC31e6-IBXC_iemm8lWhkLLHS_5cso-FlNdoYdb0/edit#gid=0" class="w3-button w3-black" target="_blank">Xem dữ liệu</a> --->
-          <input type="reset" value="Xoá dữ liệu">
-         </div>
-         <script>
-          function UploadFile() {
-           var reader = new FileReader();
-           var file = document.getElementById('attach').files[0];
-           reader.onload = function() {
-            document.getElementById('fileContent').value = reader.result;
-            document.getElementById('filename').value = file.name;
-            document.getElementById('uploadForm').submit();
-           }
-           reader.readAsDataURL(file);
-          }
-         </script>
-        </body>
+              var s_b = new Array();
+              s_b[1] = new Array("VS001", "VS002", "VS003", "VS004", "VS005", "VS006");
+              s_b[2] = new Array("VS007", "VS008", "VS009", "VS010", "VS011");
+              s_b[3] = new Array("VS012", "VS013", "VS014", "VS015", "VS016", "VS017");
+              s_b[4] = new Array("VS020", "VS021", "VS022", "VS023", "VS024");
+              s_b[5] = new Array("VS005", "VS006", "VS007", "VS008", "VS009", "VS010");
+              s_b[6] = new Array("VS011", "VS012", "VS013", "VS014", "VS015");
+              s_b[7] = new Array("VS001", "VS002", "VS003", "VS004");
+
+              function print_Branch(Branch_id) {
+                var option_str = document.getElementById(Branch_id);
+                option_str.length = 0;
+                option_str.options[0] = new Option('Chọn Chi nhánh', '');
+                option_str.selectedIndex = 0;
+                for (var i = 0; i < Branch_arr.length; i++) {
+                  option_str.options[option_str.length] = new Option(Branch_arr[i], Branch_arr[i]);
+                }
+              }
+
+              function print_Site(Site_id, Site_index) {
+                var option_str = document.getElementById(Site_id);
+                option_str.length = 0;
+                option_str.options[0] = new Option('Chọn Sun/Site', '');
+                option_str.selectedIndex = 0;
+                var Site_arr = s_a[Site_index].split("|");
+                for (var i = 0; i < Site_arr.length; i++) {
+                  option_str.options[option_str.length] = new Option(Site_arr[i], Site_arr[i]);
+                }
+              }
+
+              function print_DSR(DSR_id, DSR_index) {
+                var option_str = document.getElementById(DSR_id);
+                option_str.length = 0;
+                option_str.options[0] = new Option('Chọn mã DSR', '');
+                option_str.selectedIndex = 0;
+                var DSR_arr = s_b[DSR_index];
+                for (var i = 0; i < DSR_arr.length; i++) {
+                  option_str.options[option_str.length] = new Option(DSR_arr[i], DSR_arr[i]);
+                }
+              }
+
+              function validateForm() {
+                var gpsInput = document.getElementById('GPS');
+                if (gpsInput.value.trim() === '') {
+                  alert('Vui lòng nhập toạ độ GPS.');
+                  return false;
+                }
+                return true;
+              }
+            </script>
+          </div>
+
+          <div class="col-25">
+            <label for="lname">GPS:<em>&#x2a;</em></label>
+            <input class="input" type="text-gps" readonly id="GPS" name="GPS" value="" placeholder="Toạ độ" required pattern="\S+" title="Vui lòng nhập toạ độ" />
+            <input class="button-gps" type="button" value="Lấy toạ độ" onclick="getLocationConstant()" />
+
+            <script type="text/javascript">
+              function getLocationConstant() {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+                } else {
+                  alert("Trình duyệt hoặc thiết bị của bạn không hỗ trợ Geolocation");
+                }
+              }
+
+              function onGeoSuccess(event) {
+                document.getElementById("GPS").value = event.coords.latitude + ", " + event.coords.longitude;
+              }
+
+              function onGeoError(event) {
+                alert("Mã lỗi " + event.code + ". " + event.message);
+              }
+            </script>
+          </div>
+          <div class="col-75">
+            <label for="Branch">Chi nhánh:</label>
+            <select onchange="print_Site('Site', this.selectedIndex);" id="Branch" name="Branch" required></select>
+          </div>
+          <div class="col-75">
+            <label for="Site">Site:</label>
+            <select onchange="print_DSR('DSR', this.selectedIndex);" name="Site" id="Site" required></select>
+          </div>
+          <div class="col-75">
+            <label for="DSR">DSR:</label>
+            <select name="DSR" id="DSR" required></select>
+            <script language="javascript">print_Branch("Branch");</script>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Mã KH:</label>
+              <input type="text" id="Cus_CODE" name="Cus_CODE" pattern="(?=.*\d)(?=.*[A-Z]).{6,}" title="Mã khách hàng phải có ký tự đầu viết hoa và đủ 6 ký tự" placeholder="Mã KH đủ 6 ký tự" autocomplete="off">
+            </div>
+          </div>
+          <label for="attach" class="drop-container">
+            <span class="drop-title">Thả tệp vào đây</span>
+            hoặc
+            <input type="file" id="attach" accept="image/*" capture="camera" name="attach" required>
+          </label>
+          <div class="button" style="width: 100%;">
+            <input type="submit" value="GỬI DỮ LIỆU" onclick="return UploadFile();" />
+          </div>
+          <div>
+            <input type="reset" value="Làm lại hoặc khách hàng tiếp theo">
+          </div>
+       <script>
+function UploadFile() {
+  var gpsInput = document.getElementById('GPS');
+  if (gpsInput.value.trim() === '') {
+    showAlert('Vui lòng nhập toạ độ GPS.');
+    return false;
+  }
+
+  var branchSelect = document.getElementById('Branch');
+  var siteSelect = document.getElementById('Site');
+  var dsrSelect = document.getElementById('DSR');
+  var cusCodeInput = document.getElementById('Cus_CODE');
+  var attachInput = document.getElementById('attach');
+
+  if (!branchSelect.value || !siteSelect.value || !dsrSelect.value || cusCodeInput.value.trim() === '' || !attachInput.value) {
+    showAlert('Vui lòng điền đầy đủ thông tin.');
+    return false;
+  }
+
+  var reader = new FileReader();
+  var file = attachInput.files[0];
+  reader.onload = function() {
+    document.getElementById('fileContent').value = reader.result;
+    document.getElementById('filename').value = file.name;
+    document.getElementById('uploadForm').submit();
+    submitted = true; // Đặt submitted thành true sau khi gửi dữ liệu
+  };
+  reader.readAsDataURL(file);
+  return false;
+}
+
+// Hàm hiển thị thông báo
+function showAlert(message) {
+  // Tạo phần tử thông báo và các phần tử con
+  var notification = document.createElement('div');
+  notification.classList.add('notification');
+
+  var title = document.createElement('div');
+  title.classList.add('notification-title');
+  title.textContent = 'Thông báo';
+
+  var content = document.createElement('div');
+  content.classList.add('notification-message');
+  content.textContent = message;
+
+  var closeBtn = document.createElement('span');
+  closeBtn.classList.add('notification-close');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.onclick = function() {
+    document.body.removeChild(notification);
+  };
+
+  // Thêm các phần tử vào thông báo
+  notification.appendChild(title);
+  notification.appendChild(content);
+  notification.appendChild(closeBtn);
+
+  // Thêm thông báo vào body
+  document.body.appendChild(notification);
+
+  // Tự đóng thông báo sau 5 giây
+  setTimeout(function() {
+    document.body.removeChild(notification);
+  }, 7000);
+}
+
+// Hàm kiểm tra khi iframe tải xong
+function iframeLoaded() {
+  if (submitted) {
+    showAlert('Thông tin đã được cập nhật!');
+  }
+}
+</script>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
