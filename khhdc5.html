@@ -312,66 +312,60 @@
           <input type="hidden" value="" name="fileContent" id="fileContent">
           <input type="hidden" value="" name="filename" id="filename">
           <div class="user-details">
-            <script type= "text/javascript">
-var branch_arr = new Array("Khánh Hoà", "Phú Yên");
-var s_a = new Array();
-s_a[0]="";
-s_a[1]="Cam Ranh|Nha Trang 1|Nha Trang 2|Ninh Hoà";
-s_a[2]="Tuy Hoà 1|Tuy Hoà 2|Sông Cầu";
+<script type="text/javascript">
+var Branch_arr = ["Khánh Hoà", "Phú Yên"];
+var s_a = [];
+s_a[0] = "";
+s_a[1] = "Cam Ranh|Nha Trang 1|Nha Trang 2|Ninh Hoà";
+s_a[2] = "Tuy Hoà 1|Tuy Hoà 2|Sông Cầu";
 
-var s_b = new Array();
-s_b[1,1]="VS001|VS002|VS003|VS004|VS005|VS006";
-s_b[1,2]="VS007|VS008|VS009|VS010|VS011";
-s_b[1,3]="VS012|VS013|VS014|VS015|VS016|VS017";
-s_b[1,4]="VS020|VS021|VS022|VS023|VS024";
-s_b[2,1]="VS005|VS006|VS007|VS008|VS009|VS010";
-s_b[2,2]="VS011|VS012|VS013|VS014|VS015";
-s_b[2,3]="VS001|VS002|VS003|VS004";
+var s_b = [];
+s_b[1] = [];
+s_b[1][1] = "VS001|VS002|VS003|VS004|VS005|VS006";
+s_b[1][2] = "VS007|VS008|VS009|VS010|VS011";
+s_b[1][3] = "VS012|VS013|VS014|VS015|VS016|VS017";
+s_b[1][4] = "VS020|VS021|VS022|VS023|VS024";
+s_b[2] = [];
+s_b[2][1] = "VS005|VS006|VS007|VS008|VS009|VS010";
+s_b[2][2] = "VS011|VS012|VS013|VS014|VS015";
+s_b[2][3] = "VS001|VS002|VS003|VS004";
 
-function print_branch(branch_id){
-    // given the id of the <select> tag as function argument, it inserts <option> tags
-    var option_str = document.getElementById(branch_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn Chi nhánh','');
-    option_str.selectedIndex = 0;
-    for (var i=0; i<branch_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(branch_arr[i],branch_arr[i]);
-    }
+function print_Branch(Branch_id) {
+  var option_str = document.getElementById(Branch_id);
+  option_str.length = 0;
+  option_str.options[0] = new Option('Chọn Chi nhánh', '');
+  option_str.selectedIndex = 0;
+  for (var i = 0; i < Branch_arr.length; i++) {
+    option_str.options[option_str.length] = new Option(Branch_arr[i], Branch_arr[i]);
+  }
 }
 
-function print_site(site_id, site_index){
-    var option_str = document.getElementById(site_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn Sun/Site','');
-    option_str.selectedIndex = 0;
-    var site_arr = s_a[site_index].split("|");
-    for (var i=0; i<site_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(site_arr[i],site_arr[i]);
-    }
-}
-//This function is incorrect, just to demonstrate, please help to correct this
-
-function print_DSR(DSR_id, DSR_index){
-    var option_str = document.getElementById(DSR_id);
-    option_str.length=0;
-    option_str.options[0] = new Option('Chọn mã DSR','');
-    option_str.selectedIndex = 0;
-    var DSR_arr = s_b[DSR_index].split("|");
-    for (var i=0; i<DSR_arr.length; i++) {
-        option_str.options[option_str.length] = new Option(DSR_arr[i],DSR_arr[i]);
-    }
+function print_Site(Site_id, Site_index) {
+  var option_str = document.getElementById(Site_id);
+  option_str.length = 0;
+  option_str.options[0] = new Option('Chọn Sun/Site', '');
+  option_str.selectedIndex = 0;
+  var Site_arr = s_a[Site_index].split("|");
+  for (var i = 0; i < Site_arr.length; i++) {
+    option_str.options[option_str.length] = new Option(Site_arr[i], Site_arr[i]);
+  }
+  print_DSR('DSR', Site_index);
 }
 
+function print_DSR(DSR_id, Site_index) {
+  var option_str = document.getElementById(DSR_id);
+  option_str.length = 0;
+  option_str.options[0] = new Option('Chọn mã DSR', '');
+  option_str.selectedIndex = 0;
+  var selectedBranchIndex = document.getElementById("Branch").selectedIndex;
+  var DSR_arr = s_b[selectedBranchIndex][Site_index].split("|"); // Thay đổi chỉ số ở đây
+  for (var i = 0; i < DSR_arr.length; i++) {
+    option_str.options[option_str.length] = new Option(DSR_arr[i], DSR_arr[i]);
+  }
+}
 
-              function validateForm() {
-                var gpsInput = document.getElementById('GPS');
-                if (gpsInput.value.trim() === '') {
-                  alert('Vui lòng nhập toạ độ GPS.');
-                  return false;
-                }
-                return true;
-              }
-            </script>
+</script>
+
           </div>
 
           <div class="col-25">
@@ -399,15 +393,15 @@ function print_DSR(DSR_id, DSR_index){
           </div>
           <div class="col-75">
             <label for="Branch">Chi nhánh:</label>
-            <select onchange="print_Site('Site', this.selectedIndex);" id="Branch" name="Branch" required></select>
+            <select onchange="print_Site('Site',this.selectedIndex);" id="Branch" name="Branch"></select>
           </div>
           <div class="col-75">
             <label for="Site">Site:</label>
-            <select onchange="print_DSR('DSR', this.selectedIndex);" name="Site" id="Site" required></select>
+            <select onchange="print_DSR('DSR',this.selectedIndex);" name="Site" id="Site"></select>
           </div>
           <div class="col-75">
             <label for="DSR">DSR:</label>
-            <select name="DSR" id="DSR" required></select>
+            <select name="DSR" id="DSR"></select>
             <script language="javascript">print_Branch("Branch");</script>
           </div>
           <div class="row">
@@ -425,13 +419,13 @@ function print_DSR(DSR_id, DSR_index){
             <input type="submit" value="GỬI DỮ LIỆU" onclick="return UploadFile();" />
           </div>
           <div>
-            <input type="reset" value="Làm lại">
+            <input type="reset" value="LÀM LẠI">
           </div>
        <script>
 function UploadFile() {
   var gpsInput = document.getElementById('GPS');
   if (gpsInput.value.trim() === '') {
-    showAlert('Vui lòng nhấn nút: Lấy toạ độ (màu xanh)');
+    showAlert('Vui lòng nhấp vào nút: Lấy toạ độ.');
     return false;
   }
 
