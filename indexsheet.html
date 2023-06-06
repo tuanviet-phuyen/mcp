@@ -8,16 +8,17 @@
   <script>
     // Thông tin xác thực
     const credentials = {
-      web: {
-        client_id: '1055501954789-rv6o5p13l873gjtgnse01r1s3qqotg8l.apps.googleusercontent.com',
-        project_id: 'tracuudulieu',
-        auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-        token_uri: 'https://oauth2.googleapis.com/token',
-        auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-        client_secret: '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',
-        redirect_uris: ['https://tuanviet-phuyen.github.io/mcp/indexsheet.html'],
-        javascript_origins: ['https://tuanviet-phuyen.github.io']
-      }
+      "type": "service_account",
+  "project_id": "tracuudulieu",
+  "private_key_id": "34929206baf3ef4e4478e853cd165cf07e46c38d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQChSjXBrdOUA9Bj\nUQ2wKQxLebtOAwQzXBsZRMsGsj+g4AQWJ8bgpgVdci4rYzUm1MRP8PC5zl++Rzw5\n/+IJEhuBHdzit5OW2/GsBj89JEK2j3S/BYEgn7XvywaoPdKkqy9C6pZWcUWiiQxL\nioZAZfsYXJPAg321oKw64igxa1+0iMjqp0VIpUBVeGNjOONXlCHAWBz7PgtITX5p\nhBQRNd309iXc/SOKQhRSr/S13iNABbA//Q8t/hziZLqRrfTkkb58Tc8z2UT4DSTL\nELB/k4dipXFP8IPosOB8TaRsHHcXBAZzCTganWCUOQxe9XIGEYrg92Yu31rH7Tmc\nRdZDlkJjAgMBAAECggEANH92ot1k7hsVs5X4yht6RIDRbhF+RwdWTLG/EaVoH4F6\n4wk8aveu7F0TWQz4CnUblteaSyg4srL2D/zRQlmR+UNSl7rf/60EaxU3dTu9uTVV\nby2n+4nwiqX/OziwPOf5QKMhnu5Ml5xbE6V5kDGBesr7TqCeBMXQ+XOOWJOV+ak9\nz33/fV0jbAY6a06YVpFgcOFQ9hgwMHyyKVYscDAXr6ReL7lpCLpY+a3k3CtUgur3\na8ijKbyi4zYw1peVFEx5z2IyKnhJB1IwSq3ORvFhXwgzUSXWs6lIyJFlk1G82+5k\nzZT+QP1vZVrBigzEPhx+F1qXQ2weaX02m3oLpfL2DQKBgQDM3ss7XP5/EPxeAm+c\n0KGaRsRe0kJ8OzGOxzDxiW87OV6aqzhLhkQ3qil9JoFTt4m0af3N28ublC2kCmNs\nMWDvnoSZq5p4TUvPO8DzIAOWeV+t+qug3nZ85Im5Ws4cskmEs+At3OBXGqEaBmfQ\nSGPlWxI/T53bfGJOlnMNjowODQKBgQDJiw4Ea3FdbEi5KLqvvoWGEt6EY2C8b998\nLwt5Mo5k9GRnRKnTjjiQA227gMp/eKYzBQjQivuJ9D+ewToh7K/bDhogHtEcLba/\nefwG7j2arcndvkCTBehqqcheb9o5FSQC1grv+Jqt7wKC1zVd4GaFIMpN23cGGfPw\nG+EiwEDmLwKBgQCcT4S6l1pp8rjKtYsZF6mlP0dGnaAyjythp6M1NsoSYtRGqEq8\nfQYBfqhHH6DfEhNT/uayMXgpDSbBmVeATjCKwuSjJuYl0bv8sremCJAUOCkDYlWe\n2P2IjwpxzNGj3XfwcxmhhHv6mYu/gpGkvgbSEOlcOs/TjhSnp2zDNDax5QKBgQCs\nuZWryAECFdlFhlhoYZnBS86UGy8+j4oyvYbRubg7YQ/jSP9apZpoIegbN8dT86xM\nMVZak6H7mu4jOmp9xID59V4ChSalRbBG7V5G+kqlk6dbeL+SwQ9sylFETgvxu+J+\n472/54l440t9or7D05tJIM8AZsPc4MUk1F/gDnAQVQKBgDMmbqI94GPC+hOhe6Gd\ncCDMuxeIccz/Azj2FcpO2B7sr6kgRx01QAtxP/u9K5RzHBcv2jtjVhbeorx6HvQk\nkpz/jD01pmgB0z4Qcl5/ZEiEbtc9omD5fk109dnHdhbVTOFdrFgqAbpwy4G+ep7E\n6IFSFOc4GfJ3XB4/+13tCjsP\n-----END PRIVATE KEY-----\n",
+  "client_email": "tracuu@tracuudulieu.iam.gserviceaccount.com",
+  "client_id": "116862381530988950616",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tracuu%40tracuudulieu.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
     };
 
     const apiKey = 'AIzaSyCMH8cnICLHpQQXjDcwccK19RDzqeixBeM'; // Thay thế bằng khóa API của bạn
