@@ -1,142 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Google Sheets Integration</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <title>Truy cập Google Sheet</title>
+  <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-  <h1>Google Sheets Integration</h1>
-  <input type="text" id="search-input" placeholder="Search...">
-  <table id="data-table">
-    <thead>
-      <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-        <th>Column 3</th>
-        <!-- Thêm các tiêu đề cột tương ứng với dữ liệu từ Google Sheets -->
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://apis.google.com/js/api.js"></script>
   <script>
     // Thông tin xác thực
     const credentials = {
       "type": "service_account",
   "project_id": "tracuudulieu",
-  "private_key_id": "34929206baf3ef4e4478e853cd165cf07e46c38d",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQChSjXBrdOUA9Bj\nUQ2wKQxLebtOAwQzXBsZRMsGsj+g4AQWJ8bgpgVdci4rYzUm1MRP8PC5zl++Rzw5\n/+IJEhuBHdzit5OW2/GsBj89JEK2j3S/BYEgn7XvywaoPdKkqy9C6pZWcUWiiQxL\nioZAZfsYXJPAg321oKw64igxa1+0iMjqp0VIpUBVeGNjOONXlCHAWBz7PgtITX5p\nhBQRNd309iXc/SOKQhRSr/S13iNABbA//Q8t/hziZLqRrfTkkb58Tc8z2UT4DSTL\nELB/k4dipXFP8IPosOB8TaRsHHcXBAZzCTganWCUOQxe9XIGEYrg92Yu31rH7Tmc\nRdZDlkJjAgMBAAECggEANH92ot1k7hsVs5X4yht6RIDRbhF+RwdWTLG/EaVoH4F6\n4wk8aveu7F0TWQz4CnUblteaSyg4srL2D/zRQlmR+UNSl7rf/60EaxU3dTu9uTVV\nby2n+4nwiqX/OziwPOf5QKMhnu5Ml5xbE6V5kDGBesr7TqCeBMXQ+XOOWJOV+ak9\nz33/fV0jbAY6a06YVpFgcOFQ9hgwMHyyKVYscDAXr6ReL7lpCLpY+a3k3CtUgur3\na8ijKbyi4zYw1peVFEx5z2IyKnhJB1IwSq3ORvFhXwgzUSXWs6lIyJFlk1G82+5k\nzZT+QP1vZVrBigzEPhx+F1qXQ2weaX02m3oLpfL2DQKBgQDM3ss7XP5/EPxeAm+c\n0KGaRsRe0kJ8OzGOxzDxiW87OV6aqzhLhkQ3qil9JoFTt4m0af3N28ublC2kCmNs\nMWDvnoSZq5p4TUvPO8DzIAOWeV+t+qug3nZ85Im5Ws4cskmEs+At3OBXGqEaBmfQ\nSGPlWxI/T53bfGJOlnMNjowODQKBgQDJiw4Ea3FdbEi5KLqvvoWGEt6EY2C8b998\nLwt5Mo5k9GRnRKnTjjiQA227gMp/eKYzBQjQivuJ9D+ewToh7K/bDhogHtEcLba/\nefwG7j2arcndvkCTBehqqcheb9o5FSQC1grv+Jqt7wKC1zVd4GaFIMpN23cGGfPw\nG+EiwEDmLwKBgQCcT4S6l1pp8rjKtYsZF6mlP0dGnaAyjythp6M1NsoSYtRGqEq8\nfQYBfqhHH6DfEhNT/uayMXgpDSbBmVeATjCKwuSjJuYl0bv8sremCJAUOCkDYlWe\n2P2IjwpxzNGj3XfwcxmhhHv6mYu/gpGkvgbSEOlcOs/TjhSnp2zDNDax5QKBgQCs\nuZWryAECFdlFhlhoYZnBS86UGy8+j4oyvYbRubg7YQ/jSP9apZpoIegbN8dT86xM\nMVZak6H7mu4jOmp9xID59V4ChSalRbBG7V5G+kqlk6dbeL+SwQ9sylFETgvxu+J+\n472/54l440t9or7D05tJIM8AZsPc4MUk1F/gDnAQVQKBgDMmbqI94GPC+hOhe6Gd\ncCDMuxeIccz/Azj2FcpO2B7sr6kgRx01QAtxP/u9K5RzHBcv2jtjVhbeorx6HvQk\nkpz/jD01pmgB0z4Qcl5/ZEiEbtc9omD5fk109dnHdhbVTOFdrFgqAbpwy4G+ep7E\n6IFSFOc4GfJ3XB4/+13tCjsP\n-----END PRIVATE KEY-----\n",
+  "private_key_id": "e53c452ded992dc40b5dc9b9516549c25a52166c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUxDmiqyZmZhkE\nyGYxAslpn4Q3oxQ/OPHTn2g40rOV58wW4rRda+TVzhZUYSG+xjvDRZiFXPNHYJ78\nJPUTVYIKAf6uQtOvrEKkZtN6ZdOL8w7S4MjHD0C2pYffrrXqGndFXkwroLF4X1YU\njRLnmlay4I0A3/i9pEosWlbye4yWvHn4TqXq4fPk9EyrprBZGRu8/JUBpYS0GQ2j\nsd5bmx4mzL/vGrhettjwfRILHHikzj6WBlqwKC/7O7atRy+40Pfk2J3LVCk5Q3P+\nIELGPDcTTlXDyoj++B0DitYVB7VXW7gAteSGyWgO8Gfo2xD0kUF3zGf7AxLCcGnq\njvzDjLsPAgMBAAECggEAD7fNUDSXmiH5wC4zynQbwAdOQ7Py93az+r/Aec4rASyG\nGby2uV4Soi7e3G3uicLoQFVAXr3OpRvAsvzh9AMxn56lG2eJbuVpaO7FubmTBrg2\nhKKhgn8gdz3ES2SDQN+ipwe/1ctBwRQ97je7yUtQE1feYs2o+Q2NgzhLSw+Qg8QX\nLuERQxYQQ7oNCsjYn3d63QEhwWcqv+RlvreW5l+Tw0aLzBSx9LV1tG9q5W8Dt1Ct\n9Vg3smUolyjyN6fKuU/Yh2EZmBeP9V5Mxf8B9Qy0mpqfiDflWqXuB3ZQuOJF9qsQ\nfLAGp90AncAIGJgxEGXeaJUSCAToKzVWwa5ovrItYQKBgQD2+8DWTCGqPHlPtAhO\nbnwSllqqARl57lonpqXjcPBrzQErMjg2t2DJ85sIlTBbZbCi06L6Q7vVqpxa/w0r\nKqOEv6+F6kO+IB0YuT/SgFpFHbb8NHJ5qB1iFLBm1s6QKJfZsgWOlz3YDTVTFlDy\nmOqLC+oJx5BgeFXd/24Z28Lo7wKBgQDciLBicvqXczepnd4GG1wc3+JpxVsz7vR0\nZ4WQDk55MwwPRYst9KwKLoAy0VLRe+b/04LBqCePyEeCxvIc0e9GnIxRG4KuXEMx\nZuM+VBI9SqFqYghssJjB/2lm5481k89cWdGM2n35dHbaTupfDBpB28V3ExCMXwQM\nsoQId+gP4QKBgDQ4vOhSxpd5G+lXVp5GzCMd+WOSwfE/DX7uxIqXma4hdYrNnocr\nNOLeiDxDVyssEDINb5tc8P1XiqHO5djnthVedl1pUBOGNMDCgpUeoHeWtdcTu9Sv\nUC8p0rab2qcufhUAiB5DKkdhW5IK2OjCnmzyAvU4ZfWP3BAJbx02kzqvAoGBALpa\n91H5/zADuMGoGXnnnMr5lYXzs8IK5p+G6yJ0NHPOYx50kcvfuZFRAhvvLqC+ptD/\nlrq2sdeaUnN8UhNwg1WT7C6NpLxaUp1oaBa/TDpm2kffV2chQ7SLdDH08ts/cDaF\n38G60ED/3X9UuFBhFb8ZS5/3iEBV+kIQh+nwCTWBAoGABLpMbTlyu2zFpsrLiA34\nOqBwcGWwDXCDRzodd9ESZSz6GYu3UHlqeFWyFfFiWBrMfIk1uy2x+Z9iddB0VjZP\nZrWTilR6Lfq7LzoJSnYaEN0FE4yzzVQgRIFQS5QQPY9xIDYsbjZnLZpb0v4136Ul\nDOmggpwOpsnCWBghTNezqiQ=\n-----END PRIVATE KEY-----\n",
   "client_email": "tracuu@tracuudulieu.iam.gserviceaccount.com",
   "client_id": "116862381530988950616",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tracuu%40tracuudulieu.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
+  "universe_domain": "googleapis.co
     };
 
-    const apiKey = 'AIzaSyCMH8cnICLHpQQXjDcwccK19RDzqeixBeM';
-    const spreadsheetId = '190EYC31e6-IBXC_iemm8lWhkLLHS_5cso-FlNdoYdb0';
-    const range = 'Data!A2:F999'; // Thay đổi Sheet1 và phạm vi dữ liệu tương ứng
+    const apiKey = 'AIzaSyCMH8cnICLHpQQXjDcwccK19RDzqeixBeM'; // Thay thế bằng khóa API của bạn
+    const spreadsheetId = '190EYC31e6-IBXC_iemm8lWhkLLHS_5cso-FlNdoYdb0'; // Thay thế bằng ID của Google Sheet
+    const range = 'Data!A:F'; // Thay thế bằng phạm vi dữ liệu
 
     // Xác thực và truy cập dữ liệu Google Sheet
     async function accessGoogleSheet() {
-      const auth = await gapi.auth2.init({
-        apiKey,
-        clientId: credentials.client_id,
-        scope: 'https://www.googleapis.com/auth/spreadsheets.readonly'
-      });
-
-      auth.signIn();
-
-      auth.currentUser.listen(function (user) {
-        if (user.isSignedIn()) {
-          getDataFromSheet();
-        }
-      });
-    }
-
-    async function getDataFromSheet() {
-      const response = await gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId,
-        range
-      });
-
-      const values = response.result.values;
-
-      if (values.length > 0) {
-        const tableBody = $('#data-table tbody');
-
-        values.forEach(function (row) {
-          const tableRow = $('<tr>');
-
-          row.forEach(function (value) {
-            const tableCell = $('<td>').text(value);
-            tableRow.append(tableCell);
-          });
-
-          tableBody.append(tableRow);
+      try {
+        await gapi.client.init({
+          apiKey,
+          discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+          clientId: credentials.client_id,
+          scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
         });
+
+        await gapi.client.load("sheets", "v4");
+        await gapi.auth2.getAuthInstance().signIn();
+
+        const response = await gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId,
+          range,
+        });
+
+        const data = response.result.values;
+        console.log(data);
+      } catch (error) {
+        console.error("Đã xảy ra lỗi:", error);
       }
     }
 
-    // Tìm kiếm dữ liệu trong bảng
-    $('#search-input').on('input', function () {
-      const searchTerm = $(this).val().toLowerCase();
-      const rows = $('#data-table tbody tr');
-
-      rows.each(function () {
-        const cells = $(this).find('td');
-        let found = false;
-
-        cells.each(function () {
-          const cellText = $(this).text().toLowerCase();
-
-          if (cellText.indexOf(searchTerm) > -1) {
-            found = true;
-            return false;
-          }
-        });
-
-        $(this).toggle(found);
-      });
-    });
-
-    // Khởi tạo API Google Sheets và xác thực
-    function init() {
-      gapi.load('client:auth2', function () {
-        gapi.client.init({
-          apiKey,
-          clientId: credentials.client_id,
-          discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-          scope: 'https://www.googleapis.com/auth/spreadsheets.readonly'
-        }).then(function () {
-          accessGoogleSheet();
-        });
-      });
-    }
-
-    // Gọi hàm init khi tải xong trang
-    $(document).ready(function () {
-      init();
-    });
+    // Khi tài liệu HTML được tải, gọi hàm accessGoogleSheet để truy cập Google Sheet
+    document.addEventListener('DOMContentLoaded', accessGoogleSheet);
   </script>
 </body>
 </html>
