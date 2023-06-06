@@ -9,15 +9,15 @@
     // Thông tin xác thực
     const credentials = {
       web: {
-    client_id: '1055501954789-rv6o5p13l873gjtgnse01r1s3qqotg8l.apps.googleusercontent.com',
-    project_id: 'tracuudulieu',
-    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-    token_uri: 'https://oauth2.googleapis.com/token',
-    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-    client_secret: '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',
-    redirect_uris: ['https://tuanviet-phuyen.github.io/mcp/indexsheet.html'],
-    javascript_origins: ['https://tuanviet-phuyen.github.io']
-  }
+        client_id: '1055501954789-rv6o5p13l873gjtgnse01r1s3qqotg8l.apps.googleusercontent.com',
+        project_id: 'tracuudulieu',
+        auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+        token_uri: 'https://oauth2.googleapis.com/token',
+        auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+        client_secret: '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',
+        redirect_uris: ['https://tuanviet-phuyen.github.io/mcp/indexsheet.html'],
+        javascript_origins: ['https://tuanviet-phuyen.github.io']
+      }
     };
 
     const apiKey = 'AIzaSyCMH8cnICLHpQQXjDcwccK19RDzqeixBeM'; // Thay thế bằng khóa API của bạn
@@ -30,7 +30,7 @@
         await gapi.client.init({
           apiKey,
           discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-          clientId: credentials.client_id,
+          clientId: credentials.web.client_id,
           scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
         });
 
