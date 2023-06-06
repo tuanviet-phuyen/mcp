@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tra cứu dữ liệu từ Google Sheet</title>
+</head>
+<body>
+  <label for="search-input">Nhập từ khóa tra cứu:</label>
+  <input type="text" id="search-input">
+  <button onclick="searchData()">Tra cứu</button>
+
+  <table id="data-table"></table>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    var apiKey = 'AIzaSyCMH8cnICLHpQQXjDcwccK19RDzqeixBeM';
+    var clientId = '1055501954789-rv6o5p13l873gjtgnse01r1s3qqotg8l.apps.googleusercontent.com';
+    var spreadsheetId = '190EYC31e6-IBXC_iemm8lWhkLLHS_5cso-FlNdoYdb0';
+    var range = 'Data!A2:Z99'; // Thay đổi Sheet1 và phạm vi dữ liệu tương ứng
+
+    function handleClientLoad() {
+      gapi.load('client:auth2', initClient);
+    }
+
+    function initClient() {
+      gapi.client.init({
+        apiKey: apiKey,
+        clientId: clientId,
+        discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        scope: 'https://www.googleapis.com/auth/spreadsheets.readonly'
+      }).then(function () {
+        loadSheetData();
+      });
+    }
+
+    function loadSheetData() {
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: spreadsheetId,
+        range: range
+      }).then(function(response) {
+        var data = response.result.values;
+        displayData(data);
+      }, function(response) {
+        console.log('Error: ' + response.result.error.message);
+      });
+    }
+
+    function displayData(data) {
+      var table = document.getElementById('data-table');
+      table.innerHTML = '';
+
+      for (var i = 0; i < data.length; i++) {
+        var rowData = data[i];
+
+        if (rowData.length > 0) {
+          var row = document.createElement('tr');
+
+          for (var j = 0; j < rowData.length; j++) {
+            var cell = document.createElement(i === 0 ? 'th' : 'td');
+            cell.textContent = rowData[j];
+            row.appendChild(cell);
+          }
+
+          table.appendChild(row);
+        }
+      }
+    }
+
+    function searchData() {
+      var searchInput = document.getElementById('search-input').value;
+
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: spreadsheetId,
+        range: range,
+        majorDimension: 'ROWS',
+        valueRenderOption: 'UNFORMATTED_VALUE',
+        dateTimeRenderOption: 'FORMATTED_STRING',
+        // Sử dụng cơ chế lọc để tìm kiếm dữ liệu
+        // Trong ví dụ này, chúng ta tìm kiếm trong cột A
+        // và lấy các hàng mà giá trị cột A khớp với từ khóa tra cứu
+        // Bạn có thể tùy chỉnh cách lọc dựa trên yêu cầu cụ thể của bạn
+        // Tham khảo tài liệu Google Sheets API để biết thêm chi tiết
+        majorDimension: 'ROWS',
+        valueRenderOption: 'UNFORMATTED_VALUE',
+        dateTimeRenderOption: 'FORMATTED_STRING',
+        fields: 'sheets.data.rowData.values',
+        filters: {
+          '0': {
+            'filterCriteria': {
+              'condition': {
+                'type': 'TEXT_EQ',
+                'values': [
+                  {
+                    'userEnteredValue': searchInput
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }).then(function(response) {
+        var filteredData = response.result.sheets[0].data[0].rowData;
+        var data = [];
+
+        // Chuyển đổi dữ liệu từ định dạng JSON thành mảng
+        for (var i = 0; i < filteredData.length; i++) {
+          var row = filteredData[i].values;
+          var rowData = [];
+
+          for (var j = 0; j < row.length; j++) {
+            rowData.push(row[j].formattedValue);
+          }
+
+          data.push(rowData);
+        }
+
+        displayData(data);
+      }, function(response) {
+        console.log('Error: ' + response.result.error.message);
+      });
+    }
+  </script>
+  <script src="https://apis.google.com/js/api.js?onload=handleClientLoad" async defer></script>
+</body>
+</html>
